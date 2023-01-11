@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 import 'package:food_delivery/utils/dimensions.dart';
 
-import '../../utils/bigtext.dart';
+import '../../widgets/bigtext.dart';
 import '../../utils/colors.dart';
-import '../../utils/smalltext.dart';
+import '../../widgets/smalltext.dart';
 
 import 'food_page_body.dart';
 
