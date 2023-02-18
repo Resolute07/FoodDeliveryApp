@@ -6,66 +6,83 @@ import 'package:get/get.dart';
 
 import '../models/product_model.dart';
 
-class PopularProductController extends GetxController{
-  final PopularProductRepo popularProductRepo ;
+class PopularProductController extends GetxController {
+  final PopularProductRepo popularProductRepo;
   PopularProductController({required this.popularProductRepo});
-  List<dynamic>  get popularProductList => _popularProductList;
+  List<dynamic> get popularProductList => _popularProductList;
   List<dynamic> _popularProductList = [];
-  bool _isLoaded = false ;
-  bool get isLoaded  => _isLoaded ;
+  bool _isLoaded = false;
+  bool get isLoaded => _isLoaded;
   int _quantity = 0;
   int get quantity => _quantity;
   int _inCartItems = 0;
-  int get inCartItems => _inCartItems+ _quantity ;
-  late CartController _cart ;
-  Future<void> getPopularProductList() async{
-    Response response = await  popularProductRepo.getPopularProductList();
-    if(response.statusCode == 200){
+  int get inCartItems => _inCartItems + _quantity;
+  late CartController _cart;
+  Future<void> getPopularProductList() async {
+    Response response = await popularProductRepo.getPopularProductList();
+    if (response.statusCode == 200) {
       _popularProductList = [];
       _popularProductList.addAll(Product.fromJson(response.body).products);
-      _isLoaded =true ;
+      _isLoaded = true;
       update(); //kind of set state
-    }else{
+    } else {
       print('no data');
     }
   }
-  void setQuantity(bool isIncrement){
-    if(isIncrement){
-      _quantity = checkQuantity(_quantity+1);
+
+  void setQuantity(bool isIncrement) {
+    if (isIncrement) {
+      _quantity = checkQuantity(_quantity + 1);
     } else {
-      _quantity =checkQuantity(_quantity -1);
+      _quantity = checkQuantity(_quantity - 1);
     }
     update();
   }
-  int checkQuantity(int quantity){
-    if(quantity<0){
-      Get.snackbar("item Count ", "You can't reduce more",
-      backgroundColor: AppColors.mainColor,
-        colorText: Colors.white
-      );
-      return 0 ;
-    }
-    else if(quantity > 20){
-      Get.snackbar("item Count ", "You can't increase  more",
-          backgroundColor: AppColors.mainColor,
-          colorText: Colors.white
-      );
-      return 20 ;
-    }
-    else {
-      return quantity;
-  }}
 
-  void initProduct(CartController cart){
-    _quantity = 0 ;
-    _inCartItems= 0;
-    _cart = cart ;
+  int checkQuantity(int quantity) {
+    if ((_inCartItems + quantity) < 0) {
+      Get.snackbar("item Count ", "You can't reduce more",
+          backgroundColor: AppColors.mainColor, colorText: Colors.white);
+      return 0;
+    } else if ((_inCartItems + quantity) > 20) {
+      Get.snackbar("item Count ", "You can't increase  more",
+          backgroundColor: AppColors.mainColor, colorText: Colors.white);
+      return 20;
+    } else {
+      return quantity;
+    }
+  }
+
+  void initProduct(ProductModel product, CartController cart) {
+    _quantity = 0;
+    _inCartItems = 0;
+    _cart = cart;
+    var exist = false;
+    exist = _cart.existingCart(product);
     //if exists
     //get from storage _inCartItems
+    print("exist or not " + exist.toString());
+    if (exist) {
+      _inCartItems = _cart.getQuantity(product);
+    }
+    print("the quantity in the cart is" + _inCartItems.toString());
   }
 
-  void addItem(ProductModel product){
+  void addItem(ProductModel product) {
+    //if (quantity > 0) {
     _cart.addItems(product, _quantity);
+    _inCartItems = _cart.getQuantity(product);
+    _quantity = 0;
+    _cart.items.forEach((key, value) {
+      print("the id is :" +
+          value.id.toString() +
+          " the quantity is " +
+          value.quantity.toString());
+    });
+    update();
   }
 
+  int get totalItems {
+    return _cart.totalItems;
+  }
 }
