@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/cart/cart_page.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/controllers/recommended_product_controller.dart';
 
@@ -9,7 +10,8 @@ import 'package:food_delivery/pages/home/food_page_body.dart';
 import 'package:food_delivery/routes/route_helper.dart';
 import 'package:get/get.dart';
 import 'helper/dependencies.dart' as dep;
-void main() async{
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dep.init();
   runApp(const MyApp());
@@ -26,12 +28,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'DBFood',
-
-
-      home: MainFoodPage(),
+      //home: MainFoodPage(),
       initialRoute: RouteHelper.initial,
       getPages: RouteHelper.route,
     );
   }
 }
-

@@ -18,13 +18,14 @@ class CartController extends GetxController {
       _items.update(product.id!, (value) {
         totalQuantity = value.quantity! + quantity;
         return CartModel(
-          id: value.id,
-          name: value.name,
-          img: value.img,
-          quantity: value.quantity! + quantity,
-          isExist: true,
-          time: DateTime.now().toString(),
-        );
+            id: value.id,
+            name: value.name,
+            img: value.img,
+            price: product.price,
+            quantity: value.quantity! + quantity,
+            isExist: true,
+            time: DateTime.now().toString(),
+            product: product);
       });
       if (totalQuantity <= 0) {
         _items.remove(product.id);
@@ -37,9 +38,11 @@ class CartController extends GetxController {
             return CartModel(
               id: product.id,
               name: product.name,
+              price: product.price,
               img: product.img,
               quantity: quantity,
               isExist: true,
+              product: product,
               time: DateTime.now().toString(),
             );
           },
@@ -49,6 +52,7 @@ class CartController extends GetxController {
             backgroundColor: AppColors.mainColor, colorText: Colors.white);
       }
     }
+    update();
   }
 
   bool existingCart(ProductModel product) {
@@ -76,5 +80,19 @@ class CartController extends GetxController {
       totalQuantity += value.quantity!;
     });
     return totalQuantity;
+  }
+
+  List<CartModel> get getItems {
+    return _items.entries.map((e) {
+      return e.value;
+    }).toList();
+  }
+
+  int get totalAmount {
+    var total = 0;
+    _items.forEach((key, value) {
+      total += value.quantity! * value.price!;
+    });
+    return total;
   }
 }
