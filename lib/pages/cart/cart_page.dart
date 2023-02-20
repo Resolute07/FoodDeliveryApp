@@ -11,9 +11,9 @@ import 'package:food_delivery/widgets/app_icon.dart';
 import 'package:food_delivery/widgets/bigtext.dart';
 import 'package:food_delivery/widgets/smalltext.dart';
 import 'package:get/get.dart';
-import '../constants/appConstants.dart';
-import '../controllers/cart_controller.dart';
-import '../controllers/recommended_product_controller.dart';
+import '../../constants/appConstants.dart';
+import '../../controllers/cart_controller.dart';
+import '../../controllers/recommended_product_controller.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});

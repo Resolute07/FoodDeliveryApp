@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/cart/cart_page.dart';
+import 'package:food_delivery/pages/cart/cart_page.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/controllers/recommended_product_controller.dart';
 import 'package:food_delivery/pages/home/Main_food_Page.dart';
@@ -11,8 +11,8 @@ import 'package:food_delivery/widgets/bigtext.dart';
 import 'package:food_delivery/widgets/expandable_text_widget.dart';
 import 'package:get/get.dart';
 
-import '../../../constants/appConstants.dart';
-import '../../../controllers/cart_controller.dart';
+import '../../constants/appConstants.dart';
+import '../../controllers/cart_controller.dart';
 
 class RecommendedFoodDetails extends StatelessWidget {
   final int pageId;

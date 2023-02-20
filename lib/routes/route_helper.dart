@@ -1,9 +1,10 @@
 import 'package:food_delivery/pages/home/Main_food_Page.dart';
-import 'package:food_delivery/pages/home/food/recommended_food_details.dart';
+import 'package:food_delivery/pages/food/recommended_food_details.dart';
 import 'package:get/get.dart';
 
-import '../cart/cart_page.dart';
-import '../pages/home/food/popular_food_details.dart';
+import '../pages/cart/cart_page.dart';
+import '../pages/food/popular_food_details.dart';
+import '../pages/home/home_page.dart';
 
 class RouteHelper {
   static const String initial = '/';
@@ -20,7 +21,7 @@ class RouteHelper {
   static String getCartPage() => '$cartPage';
 
   static List<GetPage> route = [
-    GetPage(name: initial, page: () => MainFoodPage()),
+    GetPage(name: initial, page: () => HomePage()),
     GetPage(
         name: popularFood,
         page: () {

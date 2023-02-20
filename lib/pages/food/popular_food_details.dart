@@ -8,10 +8,10 @@ import 'package:food_delivery/widgets/app_icon.dart';
 import 'package:food_delivery/widgets/expandable_text_widget.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../../cart/cart_page.dart';
-import '../../../routes/route_helper.dart';
-import '../../../widgets/bigtext.dart';
-import '../../../utils/colors.dart';
+import '../cart/cart_page.dart';
+import '../../routes/route_helper.dart';
+import '../../widgets/bigtext.dart';
+import '../../utils/colors.dart';
 import 'package:get/get.dart';
 
 class PopularFoodDetail extends StatelessWidget {

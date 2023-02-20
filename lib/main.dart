@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/cart/cart_page.dart';
+import 'package:food_delivery/pages/cart/cart_page.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/controllers/recommended_product_controller.dart';
 
 import 'package:food_delivery/pages/home/Main_food_Page.dart';
-import 'package:food_delivery/pages/home/food/popular_food_details.dart';
-import 'package:food_delivery/pages/home/food/recommended_food_details.dart';
+import 'package:food_delivery/pages/food/popular_food_details.dart';
+import 'package:food_delivery/pages/food/recommended_food_details.dart';
 import 'package:food_delivery/pages/home/food_page_body.dart';
 import 'package:food_delivery/routes/route_helper.dart';
 import 'package:get/get.dart';

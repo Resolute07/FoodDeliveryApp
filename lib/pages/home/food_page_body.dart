@@ -4,7 +4,7 @@ import 'package:food_delivery/constants/appConstants.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/controllers/recommended_product_controller.dart';
 import 'package:food_delivery/models/product_model.dart';
-import 'package:food_delivery/pages/home/food/popular_food_details.dart';
+import 'package:food_delivery/pages/food/popular_food_details.dart';
 import 'package:food_delivery/routes/route_helper.dart';
 
 import 'package:food_delivery/utils/dimensions.dart';
@@ -42,6 +42,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   @override
   void dispose() {
     pageController.dispose();
+    super.dispose();
   }
 
   @override
